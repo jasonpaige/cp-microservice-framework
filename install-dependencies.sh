@@ -39,7 +39,7 @@ json_schema_versions=("release-1.4.1.MoJ.Fork")
 # Checkout and install given version
 function installVersion {
     git checkout ${1}
-    mvn clean install
+    mvn -s settings.xml clean install
 }
 
 # Checkout and install array of versions
