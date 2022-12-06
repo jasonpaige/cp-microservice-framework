@@ -13,7 +13,7 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
       - name: Dump dependencies
-        run: mvn add settings.xml
+        run: mvn -s settings.xml dependency:list
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: echo "🍏 This job's status is ${{ job.status }}."
