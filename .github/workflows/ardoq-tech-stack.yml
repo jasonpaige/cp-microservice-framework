@@ -16,10 +16,8 @@ jobs:
         run: git clone https://github.com/CJSCommonPlatform/travis-settings.git target/travis-settings
       - run: ln -sfT ${PWD}/target/travis-settings/settings.xml ${HOME}/.m2/settings.xml
       - run: ln -sfT ${PWD}/target/travis-settings/mvnw mvnw
-      - run: ln -sft ${PWD} ${PWD}/target/travis-settings/.mvn
+      - run: ln -sfT ${PWD} ${PWD}/target/travis-settings/.mvn
       - run: ${PWD}/target/travis-settings/java/install.sh -e -DexcludeGroupIds=uk.gov.justice.service,uk.gov.justice.services
       - name: Dump dependencies
-        run: mvn -s settings.xml dependency:list
-      - name: Check out repository code
-        uses: actions/checkout@v3
+        run: ${PWD}/target/travis-settings/java/install.sh -e -DexcludeGroupIds=uk.gov.justice.service,uk.gov.justice.services dependency:tree > deps.log
       - run: echo "🍏 This job's status is ${{ job.status }}."
